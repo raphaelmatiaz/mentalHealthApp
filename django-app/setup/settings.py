@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', 
+    'users',
+    'dashboard',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,13 +78,17 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# POSTGRES_DB = os.environ.get("POSTGRES_DB")
 POSTGRES_DB = config("POSTGRES_DB", cast=str)
 POSTGRES_HOST = config("POSTGRES_HOST", cast=str)
 POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str)
-# POSTGRES_PORT = int(None)
 POSTGRES_PORT = config("POSTGRES_PORT", cast=int)
 POSTGRES_USER = config("POSTGRES_USER", cast=str)
+
+# print(f"Database: {POSTGRES_DB}")
+# print(f"Host: {POSTGRES_HOST}")
+# print(f"User: {POSTGRES_USER}")
+# print(f"Password: {POSTGRES_PASSWORD}")
+# print(f"Port: {POSTGRES_PORT}")
 
 DATABASES = {
     "default": {
