@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}   
+            Mental Aid
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/styleBlueprintA.css' %}">
+    {% block styles %}
+
+    {% endblock %}
+
+</head>
+<body>
+    message from the extend (templateA)
+    <nav>
+        <a id="logo" href="/">
+            <svg width="40" height="40" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect width="52" height="52" fill="url(#pattern0_33_4)"/>
+                <defs>
+                <pattern id="pattern0_33_4" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlink:href="#image0_33_4" transform="scale(0.0111111)"/>
+                </pattern>
+                <image id="image0_33_4" width="90" height="90" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFFElEQVR4nO2cz69dUxTHt/pRlKAjr0j6S/wPgoGS4CUG6A9jI+pHYvAIRSeSMuoPiTLyIyEGUqQzKg2ifXm0DPyYiIn7qiit27TvafnI6t0vuZd79z3n3LX22fe8/Uk66MvNXt/1zT7nrLP3Otu5TCaTyWQymUwmk8n0B7gYeAyYBk76fweBR4GlscdpJMC1wNcM5iv5TaxxGgmdGRgyp9ukpdbjNBY6l3lRHrEep7HQuZcW5YD1OI0FaJcwqG09zlgDXA6sB94EvgRmgXmgRUkCMcrS8hpmvaY3gPuAy9y4AVwFvAicqmBEXwKxtBCtLwBXunHAz+BjKOMGx9NGtN/rUgU4D3gO+McgeQJxLZAcnpWcXGoAWzHEDY5ryTMuJfzDxGQmLxCIbYnkdI9LAXl4WNyT/0sgvjW/A8vjuto/UakuzHGD48dgW1xX+9fJaiVciICGGJyqtc4GNkRK9ITSm+Eo1Ffy+Te+GHwb0PB9JA2vx3W3N8lDkZJ8OaDh1UgaZuK625ukrBfE4NaAhtsiaWjFdbc3SVmcsWZfAR37I+iYj+Nq/wSPGid3DFhbQMcq4FdjLbNxXO2foCwzWvEbcFMJLTcbvzh9YetmOLmXjJLaB6ypoGct8LGRpl02LsZdSGoD3wC7Qw++ErrWAa9IWahYZ2/Vca1cIucrzOY5YApYEUHvCuAJhYf3TsndWu+C6AuAdxidqSiCe7WL2aPylngQQ+wudJgoEXPgAnyZxXk/szXY7iwBNqHHRMGYNwCfDKmhr49stLDeGW64/qwodGpIvDX+nnhafhz43cLq2nZg9ZAxn1TUf8RkI9fvB2oyt/AwBC71Lx23AE/78u7v7h8PMXqBs8BHwFO+rl7px9Z6GNpudUnPmn+BqA1XzOjY/AJcqGn0ZM0JkajRwh0pVhpNNHqHptGf152NS9foTzWN1qw2mma03qqerxBqxaVr9GlNo8/VsnXi0jX6hKbRUpzXikvX6O80jf6s7mxcukbv1TRaXoVrxaVr9IOaRt9ZdzYuTaPPANdoGn1RhM3PcTR6t5rJXQlJY3ZtuPSMPg5cbdWeW1v14dIyWlYWJ9VNrqGpMWWjxeTNZiZ3JbZjERt93HQm99mcfXuRGX3Gt0Lo35MLtBvsbLDRbd8TslfqZNUSLsUvsboJaNAiWp9JSi1h/yOgQYvofSYpNqIT0EDsPpPoKG4IzHXtiF8CXAfc7SucczECGhaF0fPWly2d1/+BdatS/KCG2lF8U5wYQQMGV9UyacYBbgQe8P12tX7DcrhBRg9jv6575ZJ8jZovW+Ix8MswcxTXPuaq1rDE4y4bF4sleQXwp3JCJ/3BgA/Lg7CAhhj8UftRbsDzhgkeHvb6Sxy2xHN0cKLLjRsgD4VmNvbIR6vLXAr4PcWeNltlNgdiWyJtwOtcSvieZCsOBOJa8rhLEf8As5jZ7UBMq5n8kEsZ6RcGftTO3A2Op80PwO1uHPCfM8iu+U9KyZ8NxJLZp4Fo3SKLWm7c8Dsxk3ImEfDhCItQLYOjLOa9pm3+YR7nQ80YAHsqmrInMOYHFcd81zUVOsdpVmFjYMz7K46Z7rGYSreS6ZKGzABLAmMuqXCcxcHQmI2AzoeaRY81loNXVhYYc3WJQ1ok9iq3GKBjtszUEDNlDPFmD5vZ01XOAWnCbWQj8L7fqfnLz7b3/N9LX9r+NrLJj9nyYx7x/9/Q+NtFJpPJZDKZTCaTybgK/Au019QFmOUIHwAAAABJRU5ErkJggg=="/>
+                </defs>
+                </svg>
+                
+            <h1>MentalAid</h1></a>
+
+            {% block extraNavElements %}
+
+            {% endblock %}
+    </nav>
+
+    {% block content%}
+
+    {% endblock %}
+
+    <div id="white-footer"></div>
+</body>
+</html>
