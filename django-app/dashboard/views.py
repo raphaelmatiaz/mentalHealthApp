@@ -30,4 +30,21 @@ def create_phrase(request):
 
 
 def blueprint_A(request):
-    return render(request, 'dashboard/blueprint_A.html')  
+    return render(request, 'dashboard/blueprint_A.html') 
+
+def select_category(request):
+    categories = [
+        {"name": "Sadness"},
+        {"name": "Lack of Confidence"},
+        {"name": "Stress at Work"},
+        {"name": "Guilt"},
+        {"name": "Body Image"},
+        {"name": "Social Anxiety"},
+        {"name": "Loneliness"},
+        {"name": "Self-Doubt"},
+        {"name": "Anxiety"},
+        {"name": "Anger Management"},
+        {"name": "Procrastination"},
+        {"name": "Imposter Syndrome"}
+    ]
+    return render(request, 'selectrable_buttons.html', {'categories': categories})
