@@ -1,0 +1,10 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<h2>Criar nova frase</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar frase</button>
+</form>
+{% endblock %}

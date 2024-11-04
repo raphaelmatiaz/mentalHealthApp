@@ -19,3 +19,4 @@ dump:  ## Dump the database
 
 load:  ## Load the database
 	docker compose exec -it django-app poetry run python manage.py loaddata /app/data.json
+

@@ -6,29 +6,27 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
-{% block extraNavElements %}
-    <a href="login/" class="navButton">Login</a>
-{% endblock %}
 
 {% block content %}
     <div class="content">
         <span class="content-block">
-            <h2><nobr>Helping you find <em>peace</em></nobr>, <nobr>one <em>phrase</em> at a time</nobr></h2>
-            <span>
-                <h3>Guiding you gently with words of support, when you most need it</h3>
-                <h4>
-                    <ul>
-                        <li>Customize mental struggles</li>
-                        <li>Receive comfort and motivation </li>
-                        <li>Live a better life</li>
-                    </ul>
-                </h4>
-            </span>
-            <button class="get-started-button">Get Started</button>
+            <h2>
+                <nobr>Helping you find <em>peace</em></nobr>, 
+                <nobr>one <em>phrase</em> at a time</nobr>
+            </h2>
+            <h3>Guiding you gently with words of support, when you most need it</h3>
+            <h4>
+                <ul>
+                    <li>Customize mental struggles</li>
+                    <li>Receive comfort and motivation</li>
+                    <li>Live a better life</li>
+                </ul>
+            </h4>
+            <a href="{% url 'login' %}" class="get-started-button">Get Started</a>  
         </span>
 
-        <span class="hero-img-wrapper" >
-            <img class="hero-img" src="{% static 'media/relaxation.png' %}" alt="">
+        <span class="hero-img-wrapper">
+            <img class="hero-img" src="{% static 'media/relaxation.png' %}" alt="Relaxation Image">
         </span>
     </div>
 {% endblock %}

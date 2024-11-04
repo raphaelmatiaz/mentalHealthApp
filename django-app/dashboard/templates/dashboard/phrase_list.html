@@ -1,0 +1,11 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<h2>Frases na categoria: {{ category.name }}</h2>
+<ul>
+    {% for phrase in phrases %}
+        <li>{{ phrase.content }} - {{ phrase.user.username }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'create_phrase' %}">Adicionar nova frase</a>
+{% endblock %}
