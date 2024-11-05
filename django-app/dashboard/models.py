@@ -8,7 +8,7 @@ class Category(models.Model):
         return self.name
 
 class Phrase(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.CharField(max_length=30, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)  
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
