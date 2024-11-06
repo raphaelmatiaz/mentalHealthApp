@@ -24,12 +24,8 @@ def category_list(request):
     return render(request, 'dashboard/category_list.html', {'categories': categories})
 
 def phrase_list(request, category_id):
-
-    category = get_object_or_404(Category, id=category_id)
-
-
-    phrases = Phrase.objects.filter(category=category)
-
+    category = get_object_or_404(Category, id=category_id) 
+    phrases = Phrase.objects.filter(category=category)  
     return render(request, 'dashboard/phrase_list.html', {
         'category': category,
         'phrases': phrases
@@ -49,3 +45,4 @@ def create_phrase(request, category_id):
         form = PhraseForm()
 
     return render(request, 'dashboard/create_phrase.html', {'form': form, 'category': category})
+

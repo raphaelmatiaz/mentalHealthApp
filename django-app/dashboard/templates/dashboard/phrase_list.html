@@ -1,6 +1,6 @@
 {% extends 'blueprint_A.html' %}
 
-{% block title %}Frases - MentalAid{% endblock %}
+{% block title %}Frases de {{ category.name }}{% endblock %}
 
 {% block content %}
     <h2>Frases de {{ category.name }}</h2>
@@ -9,15 +9,19 @@
         <ul>
             {% for phrase in phrases %}
                 <li>
-                    <strong>{{ phrase.author }}:</strong> {{ phrase.content }}
-                    <br><small>Criada em: {{ phrase.created_at|date:"d/m/Y H:i" }}</small>
+                    <p><strong>{{ phrase.content }}</strong></p>
+                    <p><em>- {{ phrase.author }}</em></p>
+                    <p><small>Categoria: {{ phrase.category.name }}</small></p>
+                    <button class="like-button" onclick="likePhrase({{ phrase.id }})">Curtir</button>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>Não há frases nesta categoria ainda.</p>
+        <p>Não há frases cadastradas para esta categoria.</p>
     {% endif %}
 
-    <a href="{% url 'create_phrase' category_id=category.id %}">Criar uma nova frase nesta categoria</a><br>
+    <a href="{% url 'create_phrase' category_id=category.id %}">Adicionar Nova Frase</a>
+    <br>
     <a href="{% url 'category_list' %}">Voltar para a lista de categorias</a>
 {% endblock %}
+

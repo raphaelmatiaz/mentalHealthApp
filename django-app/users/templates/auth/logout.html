@@ -1,8 +1,0 @@
-{% extends 'home.html' %}
-{% block content %}
-<h4>Logout</h4>
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-</form>
-{% endif %}
