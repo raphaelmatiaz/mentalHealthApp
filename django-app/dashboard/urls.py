@@ -10,7 +10,5 @@ urlpatterns = [
     path('categories/', views.category_list, name='category_list'),  
     path('phrases/<int:category_id>/', views.phrase_list, name='phrase_list'),  
     path('like/<int:phrase_id>/', views.like_phrase, name='like_phrase'),
-    path('delete/<int:phrase_id>/', views.delete_phrase, name='delete_phrase'),  
-
+    path('delete/<int:phrase_id>/', views.delete_phrase, name='delete_phrase'),
 ]
-
