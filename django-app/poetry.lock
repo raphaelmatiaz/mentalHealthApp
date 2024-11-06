@@ -30,6 +30,17 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "djangorestframework"
+version = "3.15.2"
+description = "Web APIs for Django, made easy."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+django = ">=4.2"
+
+[[package]]
 name = "gunicorn"
 version = "23.0.0"
 description = "WSGI HTTP Server for UNIX"
@@ -131,11 +142,12 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "657ad59df57ec9479227dc302279dd585758af48e89cb8b234236e77ed64dabc"
+content-hash = "d633629a26440644973543a2ff011885786b9c49e5f38ffbd2add4c6bee4be66"
 
 [metadata.files]
 asgiref = []
 django = []
+djangorestframework = []
 gunicorn = []
 packaging = []
 psycopg = []

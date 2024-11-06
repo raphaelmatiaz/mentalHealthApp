@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,10 +27,7 @@ SECRET_KEY = 'django-insecure-9w-+ox3o8e(abt=eo(f35izcish$=gxg356-&bkw@5-1)frjkv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,12 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles', 
-    'users',
+    # 'users',
     'dashboard',
+    'rest_framework',
 ]
 
 
-AUTH_USER_MODEL = 'users.CustomUser'
+# AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,7 +64,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR,'dashboard','templates','dashboard'),
-            os.path.join(BASE_DIR,'users','templates','auth'),
+            # os.path.join(BASE_DIR,'users','templates','auth'),
             os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -93,20 +90,15 @@ POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str)
 POSTGRES_PORT = config("POSTGRES_PORT", cast=int)
 POSTGRES_USER = config("POSTGRES_USER", cast=str)
 
-# print(f"Database: {POSTGRES_DB}")
-# print(f"Host: {POSTGRES_HOST}")
-# print(f"User: {POSTGRES_USER}")
-# print(f"Password: {POSTGRES_PASSWORD}")
-# print(f"Port: {POSTGRES_PORT}")
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": POSTGRES_HOST,
-        "PORT": POSTGRES_PORT,
+        "HOST": "localhost",
+        # "HOST": "database",
+        "PORT": 5432,
     }
 }
 
@@ -146,6 +138,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_URL = '/media/'
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
@@ -157,3 +151,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}

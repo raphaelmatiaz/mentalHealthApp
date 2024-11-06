@@ -1,11 +1,23 @@
-{% extends 'dashboard/dashboard.html' %}
+{% extends 'blueprint_A.html' %}
+
+{% block title %}Frases - MentalAid{% endblock %}
 
 {% block content %}
-<h2>Frases na categoria: {{ category.name }}</h2>
-<ul>
-    {% for phrase in phrases %}
-        <li>{{ phrase.content }} - {{ phrase.user.username }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'create_phrase' %}">Adicionar nova frase</a>
+    <h2>Frases de {{ category.name }}</h2>
+
+    {% if phrases %}
+        <ul>
+            {% for phrase in phrases %}
+                <li>
+                    <strong>{{ phrase.author }}:</strong> {{ phrase.content }}
+                    <br><small>Criada em: {{ phrase.created_at|date:"d/m/Y H:i" }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Não há frases nesta categoria ainda.</p>
+    {% endif %}
+
+    <a href="{% url 'create_phrase' category_id=category.id %}">Criar uma nova frase nesta categoria</a><br>
+    <a href="{% url 'category_list' %}">Voltar para a lista de categorias</a>
 {% endblock %}

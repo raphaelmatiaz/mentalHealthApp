@@ -1,21 +1,24 @@
-{% extends 'dashboard/dashboard.html' %}
+{% extends 'blueprint_A.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Struggles</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block title %}Categorias - MentalAid{% endblock %}
+
 {% block content %}
-<h2>Here you can select or deselect struggles. </h2>
-<ul>
-    {% for category in categories %}
-        <li>
-            <a href="{% url 'phrase_list' category.id %}">{{ sadness }}, {{ Lack of Confidence }}</a>
-        </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'create_phrase' %}">Criar nova frase</a>
+    <div class="btn-create-wrapper">
+        <a href="{% url 'create_phrase' category_id=1 %}" class="btn-create-phrase">Criar frase</a>  
+    </div>
+
+    <h2>Categorias</h2>
+    <ul>
+        {% for category in categories %}
+            <li>
+                {% if category.id %}
+                    <a href="{% url 'phrase_list' category.id %}">{{ category.name }}</a>
+                {% else %}
+                    <span>Categoria inválida</span>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Nenhuma categoria disponível.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
