@@ -1,4 +1,16 @@
 {
     "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.autoImportCompletions": true
+    "python.analysis.autoImportCompletions": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "database": "db",
+            "username": "postgres",
+            "name": "MentalHealthDB",
+            "group": "PostgreSQL Connections"
+        }
+    ]
 }

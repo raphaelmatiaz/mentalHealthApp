@@ -1,0 +1,23 @@
+{% extends 'blueprint_A.html' %}
+
+{% block title %}Frases Curtidas{% endblock %}
+
+{% block content %}
+    <h2>Frases Curtidas</h2>
+
+    {% if phrases %}
+        <ul>
+            {% for phrase in phrases %}
+                <li>
+                    <p><strong>{{ phrase.content }}</strong></p>
+                    <p><em>- {{ phrase.author }}</em></p>
+                    <p><small>Categoria: {{ phrase.category.name }}</small></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Você ainda não curtiu nenhuma frase.</p>
+    {% endif %}
+    
+    <a href="{% url 'category_list' %}">Voltar para a lista de categorias</a>
+{% endblock %}

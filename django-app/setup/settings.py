@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,10 +27,7 @@ SECRET_KEY = 'django-insecure-9w-+ox3o8e(abt=eo(f35izcish$=gxg356-&bkw@5-1)frjkv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,13 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles', 
-    'users',
     'dashboard',
     'rest_framework', 
+    'rest_framework',
 ]
 
 
-AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,7 +63,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR,'dashboard','templates','dashboard'),
-            os.path.join(BASE_DIR,'users','templates','auth'),
             os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -88,17 +82,11 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-POSTGRES_DB = config("POSTGRES_DB", cast=str)
-POSTGRES_HOST = config("POSTGRES_HOST", cast=str)
-POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str)
-POSTGRES_PORT = config("POSTGRES_PORT", cast=int)
-POSTGRES_USER = config("POSTGRES_USER", cast=str)
-
-# print(f"Database: {POSTGRES_DB}")
-# print(f"Host: {POSTGRES_HOST}")
-# print(f"User: {POSTGRES_USER}")
-# print(f"Password: {POSTGRES_PASSWORD}")
-# print(f"Port: {POSTGRES_PORT}")
+POSTGRES_DB = config("POSTGRES_DB", cast=str, default="db")
+POSTGRES_HOST = config("POSTGRES_HOST", cast=str, default="localhost")
+POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str, default="password")
+POSTGRES_PORT = config("POSTGRES_PORT", cast=int, default=5432)
+POSTGRES_USER = config("POSTGRES_USER", cast=str, default="user")
 
 DATABASES = {
     "default": {
@@ -106,8 +94,9 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": POSTGRES_HOST,
-        "PORT": POSTGRES_PORT,
+        "HOST": "localhost",
+        # "HOST": "database",
+        "PORT": 5432,
     }
 }
 
@@ -147,6 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_URL = '/media/'
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
@@ -158,3 +149,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}

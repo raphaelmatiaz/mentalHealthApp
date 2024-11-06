@@ -1,11 +1,9 @@
-
 {% extends 'blueprint_A.html' %}
 
 {% load static %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
-
 
 {% block content %}
     <div class="content">
@@ -22,7 +20,7 @@
                     <li>Live a better life</li>
                 </ul>
             </h4>
-            <a href="{% url 'category_list' %}" class="get-started-button">Get Started</a>  
+            <a href="{% url 'login' %}" class="get-started-button">Get Started</a>  
         </span>
 
         <span class="hero-img-wrapper">

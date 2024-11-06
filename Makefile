@@ -20,6 +20,11 @@ dump:  ## Dump the database
 load:  ## Load the database
 	docker compose exec -it django-app poetry run python manage.py loaddata /app/data.json
 
+up-database:  ## Docker compose up database only
+	docker compose up -d --build database || true
+
+local: up-database  ## Runserver local
+	cd django-app && poetry run python manage.py runserver
 connect: ## Connect to the Postgres database
 	docker compose exec -it database psql --username=user --dbname=db
 	

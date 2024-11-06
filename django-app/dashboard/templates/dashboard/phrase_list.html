@@ -1,11 +1,35 @@
-{% extends 'dashboard/dashboard.html' %}
+{% extends 'blueprint_A.html' %}
+
+{% block title %}Frases de {{ category.name }}{% endblock %}
 
 {% block content %}
-<h2>Frases na categoria: {{ category.name }}</h2>
-<ul>
-    {% for phrase in phrases %}
-        <li>{{ phrase.content }} - {{ phrase.user.username }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'create_phrase' %}">Adicionar nova frase</a>
+    <h2>Frases de {{ category.name }}</h2>
+
+    {% if phrases %}
+        <ul>
+            {% for phrase in phrases %}
+                <li>
+                    <p><strong>{{ phrase.content }}</strong></p>
+                    <p><em>- {{ phrase.author }}</em></p>
+                    <p><small>Categoria: {{ phrase.category.name }}</small></p>
+                    <form method="post" action="{% url 'like_phrase' phrase_id=phrase.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Curtir</button>
+                    </form>
+
+                    <form method="post" action="{% url 'delete_phrase' phrase_id=phrase.id %}">
+                        {% csrf_token %}
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir esta frase?')">Excluir</button>
+                    </form>               
+                 </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Não há frases cadastradas para esta categoria.</p>
+    {% endif %}
+
+    <a href="{% url 'create_phrase' category_id=category.id %}">Adicionar Nova Frase</a>
+    <br>
+    <a href="{% url 'category_list' %}">Voltar para a lista de categorias</a>
 {% endblock %}
+
