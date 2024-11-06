@@ -1,10 +1,40 @@
-{% extends 'dashboard/dashboard.html' %}
+
+{% extends 'blueprint_A.html' %}
+
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/create_phrase.css' %}">
+{% endblock %}
+
+{% block extraNavElements %}
+    <a href="{% url 'category_list' %}" class="navButton">&#8617; Back</a>
+{% endblock %}
 
 {% block content %}
-<h2>Criar nova frase</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar frase</button>
-</form>
+<hr>
+<div class="content">
+    <span class="content-block">
+        <span class="header-wrapper">
+            <h2>Create a Custom Phrase</h2>
+            <h3>Here you can add your own custom phrase to be viewed when using the app</h3>
+        </span>
+        <fieldset>
+            <legend><nbr>&#8203; Enter a custom phrase &#10230; Select a category &#10230; Use it in the app</nbr></legend>
+            <form method="post" id="register-phrase-form">
+                
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" id="submit-button">Submit</button>
+            </form>
+        </fieldset>
+    </span>
+
+    <span class="hero-img-wrapper">
+        <img class="hero-img" src="{% static 'media/well-being.png' %}" alt="Well Being Image">
+    </span>
+</div>
+
 {% endblock %}
+
+    
+

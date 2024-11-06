@@ -1,21 +1,46 @@
-{% extends 'dashboard/dashboard.html' %}
+{% extends 'blueprint_A.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Struggles</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/categories.css' %}">
+{% endblock %}
+
+{% block extraNavElements %}
+    <a href="{% url 'create_phrase' %}" class="navButton">Create a custom Phrase</a>
+    
+{% endblock %}
+
+
 {% block content %}
-<h2>Here you can select or deselect struggles. </h2>
-<ul>
-    {% for category in categories %}
-        <li>
-            <a href="{% url 'phrase_list' category.id %}">{{ sadness }}, {{ Lack of Confidence }}</a>
-        </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'create_phrase' %}">Criar nova frase</a>
+<hr>
+<h2>What’s been weighing <br> on  your mind lately? </h2>
+<h3>Let us know about some of the struggles <br> you might be going through.</h3>
+
+    <div id="category-list">
+        <ul>
+            <li class="category">Sadness</li>
+            <li class="category">Lack of Confidence</li>
+            <li class="category">Stress at Work</li>
+            <li class="category">Guilt</li>
+            <li class="category">Body Image</li>
+            <li class="category">Social Anxiety</li>
+            <li class="category">Loneliness</li>
+            <li class="category">Self-Doubt</li>
+            <li class="category">Anxiety</li>
+            <li class="category">Anger Management</li>
+            <li class="category">Procrastination</li>
+            <li class="category">Impostor Syndrome</li>
+        </ul>
+    </div>
+
+        {% for category in categories %}
+
+            <li>
+                <a href="{% url 'phrase_list' category.id %}" class="category"><p>{{ category.name }}</p></a>
+            </li>
+
+        {% endfor %}
+
+
+
 {% endblock %}
