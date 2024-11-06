@@ -1,7 +1,7 @@
 from django import forms
-from .models import Phrase, Category
+from .models import Phrase
 
 class PhraseForm(forms.ModelForm):
     class Meta:
         model = Phrase
-        fields = ['content', 'category']
+        fields = ['author', 'content', 'category']

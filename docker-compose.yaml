@@ -43,9 +43,9 @@ services:
     depends_on:
       - database
 
-volumes:
-  data:
-
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  data:
