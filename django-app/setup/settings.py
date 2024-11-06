@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', 
     'dashboard',
     'rest_framework', 
-    'rest_framework',
 ]
 
 
@@ -94,9 +93,8 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": "localhost",
-        # "HOST": "database",
-        "PORT": 5432,
+        "HOST": POSTGRES_HOST,
+        "PORT": POSTGRES_PORT,
     }
 }
 
