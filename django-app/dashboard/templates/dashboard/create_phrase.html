@@ -3,15 +3,13 @@
 {% block title %}Criar Frase - MentalAid{% endblock %}
 
 {% block content %}
-    <h2>Criar Frase </h2>
+<h2>Criar Frase </h2>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}  
-        <button type="submit">Salvar Frase</button>
-    </form>
-    
-    <a href="{% url 'category_list' %}">Voltar para a lista de categorias</a>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar Frase</button>
+</form>
+
+<a href="{% url 'category_list' %}">Voltar para a lista de categorias</a>
 {% endblock %}
-
-
