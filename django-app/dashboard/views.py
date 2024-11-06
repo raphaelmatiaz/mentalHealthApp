@@ -46,3 +46,20 @@ def create_phrase(request, category_id):
 
     return render(request, 'dashboard/create_phrase.html', {'form': form, 'category': category})
 
+def like_phrase(request, phrase_id):
+    phrase = get_object_or_404(Phrase, id=phrase_id)
+
+    liked_category, created = Category.objects.get_or_create(name="Frases Curtidas")
+
+    phrase.category = liked_category
+    phrase.save()
+
+    return redirect('phrase_list', category_id=liked_category.id)
+
+def delete_phrase(request, phrase_id):
+    phrase = get_object_or_404(Phrase, id=phrase_id)
+
+    phrase.delete()
+
+    return redirect('phrase_list', category_id=phrase.category.id)
+

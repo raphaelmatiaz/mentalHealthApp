@@ -12,8 +12,16 @@
                     <p><strong>{{ phrase.content }}</strong></p>
                     <p><em>- {{ phrase.author }}</em></p>
                     <p><small>Categoria: {{ phrase.category.name }}</small></p>
-                    <button class="like-button" onclick="likePhrase({{ phrase.id }})">Curtir</button>
-                </li>
+                    <form method="post" action="{% url 'like_phrase' phrase_id=phrase.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Curtir</button>
+                    </form>
+
+                    <form method="post" action="{% url 'delete_phrase' phrase_id=phrase.id %}">
+                        {% csrf_token %}
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir esta frase?')">Excluir</button>
+                    </form>               
+                 </li>
             {% endfor %}
         </ul>
     {% else %}
