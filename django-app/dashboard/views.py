@@ -15,7 +15,7 @@ def phrase_list(request, category_id):
     phrases = Phrase.objects.filter(category=category)
     return render(request, 'dashboard/phrase_list.html', {'category': category, 'phrases': phrases})
 
-@login_required
+# @login_required
 def create_phrase(request):
     if request.method == 'POST':
         form = PhraseForm(request.POST)
