@@ -71,18 +71,22 @@ def phrase_list(request, category_id):
         'phrases': phrases
     })
 
-def create_phrase(request, category_id):
-    category = get_object_or_404(Category, id=category_id)  
+# category_id
+def create_phrase(request):
+    # category = get_object_or_404(Category, id=category_id)  
 
     if request.method == 'POST':
         form = PhraseForm(request.POST)
+
         if form.is_valid():
             phrase = form.save(commit=False)
-            phrase.category = category  
+            # phrase.category = category  
             phrase.save()
-            return redirect('phrase_list', category_id=phrase.category_id)     
+
+            return redirect('create_phrase.html')     
     else:
         form = PhraseForm()
+
     return render(request, 'dashboard/create_phrase.html', {'form': form})
 
 
