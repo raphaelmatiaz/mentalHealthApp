@@ -1,11 +1,71 @@
+
 {% extends 'blueprint_A.html' %}
 
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/phrase_list.css' %}">
+{% endblock %}
+
+{% block extraNavElements %}
+    <span>
+        <a href="{% url 'category_list' %}" class="navButton">&#8617; Back</a>
+        <a href="{% url 'create_phrase' %}" class="navButton">Create a custom phrase</a>
+    </span>
+{% endblock %}
+
 {% block content %}
-<h2>Frases na categoria: {{ category.name }}</h2>
+<hr>
+<div class="content">
+
+    <span class="content-block">
+
+        <span class="header-wrapper">
+            <h2>Phrases to help with *categoria*</h2>
+            <h3>Reading and integrating these phrases might help you deal with *categoria*</h3>
+            <hr>
+        </span>
+
+        <section class="scroll-container">
+
+            <div class="scroll-area">
+                <span>
+                    <p class="phrase"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut vitae necessitatibus, sapiente repellendus harum dolor quidem dolorum suscipit iure hic.</p>
+                    <hr>
+                    <p class="author"> Author Name</p>
+                </span>
+            </div>
+            <div class="scroll-area">
+                <span>
+                    <p class="phrase"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt est, quisquam molestias nisi unde corrupti.</p>
+                    <hr>
+                    <p class="author"> Author Name</p>
+                </span>
+            </div>
+            <div class="scroll-area">
+                <span>
+                    <p class="phrase"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, ipsa.</p>
+                    <hr>
+                    <p class="author"> Author Name</p>
+                </span>
+            </div>
+
+        </section>
+
+    </span>
+
+    <span class="hero-img-wrapper"></span>
+    
+</div>
+
+{% endblock %}
+
+    
+
+<!-- <h2>Frases na categoria: {{ category.name }}</h2>
 <ul>
     {% for phrase in phrases %}
         <li>{{ phrase.content }} - {{ phrase.user.username }}</li>
     {% endfor %}
-</ul>
-<a href="{% url 'create_phrase' %}">Adicionar nova frase</a>
-{% endblock %}
+</ul> -->
+
+

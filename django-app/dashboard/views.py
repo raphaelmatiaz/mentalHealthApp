@@ -10,6 +10,9 @@ from django.http import Http404
 def home(request):
     return render(request, 'home.html')
 
+def frontendbuild(request):
+    return render(request, 'phrase_list.html')
+
 class CategoryListView(APIView):
     def get(self, request):
         category = Category.objects.all()
