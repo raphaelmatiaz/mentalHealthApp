@@ -1,24 +1,34 @@
 {% extends 'blueprint_A.html' %}
 
-{% block title %}Categorias - MentalAid{% endblock %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/categories.css' %}">
+{% endblock %}
+
+{% block extraNavElements %}
+    <a href="{% url 'create_phrase' %}" class="navButton">Create a custom Phrase</a>
+{% endblock %}
+
 
 {% block content %}
-    <div class="btn-create-wrapper">
-        <a href="{% url 'create_phrase' category_id=1 %}" class="btn-create-phrase">Criar frase</a>  
-    </div>
 
-    <h2>Categorias</h2>
-    <ul>
-        {% for category in categories %}
-            <li>
-                {% if category.id %}
-                    <a href="{% url 'phrase_list' category.id %}">{{ category.name }}</a>
-                {% else %}
-                    <span>Categoria inválida</span>
-                {% endif %}
-            </li>
-        {% empty %}
-            <li>Nenhuma categoria disponível.</li>
-        {% endfor %}
-    </ul>
+    <hr>
+
+    <section id="content-wrapper">
+        <div id="headings-wrapper">
+            <h2>What’s been weighing <br> on  your mind lately? </h2>
+            <h3>In the below list, select a struggle  <br>  you might be going through.</h3>
+        </div>
+        <div id="category-list">
+            <ul>
+                {% for category in categories %}
+                    <li class="category">
+                        <a href="{% url 'phrase_list' category.id %}" ><p>{{ category.name }}</p></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
 {% endblock %}
