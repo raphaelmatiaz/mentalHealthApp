@@ -13,7 +13,7 @@ class Category( models.Model):
 
 class Phrase(models.Model):
     content = models.TextField()
-    author = models.CharField( max_length=255, null=False)
+    author = models.CharField(max_length=255, null=False, default="Autor Desconhecido")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
