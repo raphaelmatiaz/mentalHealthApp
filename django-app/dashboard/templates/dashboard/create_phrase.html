@@ -1,15 +1,48 @@
+
 {% extends 'blueprint_A.html' %}
 
-{% block title %}Criar Frase - MentalAid{% endblock %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/create_phrase.css' %}">
+{% endblock %}
+
+{% block extraNavElements %}
+    <a href="{% url 'category_list' %}" class="navButton">&#8617; Back</a>
+{% endblock %}
 
 {% block content %}
-<h2>Criar Frase </h2>
+<hr>
+<div class="content">
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar Frase</button>
-</form>
+    <span class="content-block">
 
-<a href="{% url 'category_list' %}">Voltar para a lista de categorias</a>
+        <span class="header-wrapper">
+            <h2>Create a Custom Phrase</h2>
+            <h3>Here you can add your own custom phrase to be viewed when using the app</h3>
+        </span>
+
+        <fieldset>
+
+            <legend>
+                <nbr>&#8203; Enter an author name &#10230; Enter a custom phrase &#10230; Select a category &#10230; Use it in the app</nbr>
+            </legend>
+
+            <form method="post" id="register-phrase-form">
+                
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+
+                <button type="submit" id="submit-button">Submit</button>
+            </form>
+
+        </fieldset>
+    </span>
+
+    <span class="hero-img-wrapper"></span>
+    
+</div>
+
 {% endblock %}
+
+    
