@@ -73,13 +73,13 @@ def category_list(request):
 # def phrase_list(request, category_id):
 #     category = get_object_or_404(Category, id=category_id) 
 #     phrases = Phrase.objects.filter(category=category)  
-# 
-    context = {
+
+#     context = {
 #         'category': category,
 #         'phrases': phrases
 #     }
 
-    return render(request, 'phrase_list.html', context)
+#     return render(request, 'phrase_list.html', context)
     # return render(request, 'dashboard/phrase_list.html', {
     #     'category': category,
     #     'phrases': phrases

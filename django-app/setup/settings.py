@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from email.policy import default
 from pathlib import Path
 from decouple import config
 import os
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-9w-+ox3o8e(abt=eo(f35izcish$=gxg356-&bkw@5-1)frjkv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -83,11 +84,11 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-POSTGRES_DB = config("POSTGRES_DB", cast=str)
-POSTGRES_HOST = config("POSTGRES_HOST", cast=str)
-POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str)
-POSTGRES_PORT = config("POSTGRES_PORT", cast=int)
-POSTGRES_USER = config("POSTGRES_USER", cast=str)
+POSTGRES_DB = config("POSTGRES_DB", cast=str, default="db")
+POSTGRES_HOST = config("POSTGRES_HOST", cast=str, default="localhost")
+POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str, default="password")
+POSTGRES_PORT = config("POSTGRES_PORT", cast=int, default="5432")
+POSTGRES_USER = config("POSTGRES_USER", cast=str, default="user")
 
 DATABASES = {
     "default": {
