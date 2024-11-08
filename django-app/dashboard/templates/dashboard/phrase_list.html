@@ -20,21 +20,25 @@
     <span class="content-block">
 
         <span class="header-wrapper">
-            <h2>Phrases to help with *categoria*</h2>
-            <h3>Reading and integrating these phrases might help you deal with *categoria*</h3>
+            <h2>Phrases to help with {{ category.name }}</h2>
+            <h3>Reading and integrating these phrases might help you deal with {{ category.name }}</h3>
             <hr>
         </span>
 
         <section class="scroll-container">
-
+            {% for phrase in phrases %}
+            
+            
             <div class="scroll-area">
                 <span>
-                    <p class="phrase"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut vitae necessitatibus, sapiente repellendus harum dolor quidem dolorum suscipit iure hic.</p>
+                    <p class="phrase"> {{ phrase.content }}</p>
                     <hr>
-                    <p class="author"> Author Name</p>
+                    <p class="author"> {{ phrase.author }}</p>
                 </span>
             </div>
-            <div class="scroll-area">
+
+            {% endfor %}
+            <!-- <div class="scroll-area">
                 <span>
                     <p class="phrase"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt est, quisquam molestias nisi unde corrupti.</p>
                     <hr>
@@ -47,7 +51,7 @@
                     <hr>
                     <p class="author"> Author Name</p>
                 </span>
-            </div>
+            </div> -->
 
         </section>
 
@@ -61,11 +65,11 @@
 
     
 
-<!-- <h2>Frases na categoria: {{ category.name }}</h2>
+<h2>Frases na categoria: {{ category.name }}</h2>
 <ul>
     {% for phrase in phrases %}
         <li>{{ phrase.content }} - {{ phrase.user.username }}</li>
     {% endfor %}
-</ul> -->
+</ul>
 
 

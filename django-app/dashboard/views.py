@@ -97,7 +97,9 @@ def create_phrase(request):
             # phrase.category = category  
             phrase.save()
 
-            return redirect('create_phrase.html')     
+            form = PhraseForm()
+
+            return render(request, 'dashboard/create_phrase.html', {'form': form})    
     else:
         form = PhraseForm()
 
