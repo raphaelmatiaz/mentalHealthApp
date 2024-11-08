@@ -4,6 +4,7 @@ services:
     restart: always
     volumes:
       - data:/var/lib/postgresql/data
+      - ./django-app/initdb.d:/docker-entrypoint-initdb.d
     ports:
       - 5432:5432
     environment:
