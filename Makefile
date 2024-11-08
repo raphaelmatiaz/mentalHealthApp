@@ -15,7 +15,7 @@ up:  ## Run the project
 
 dump:  ## Dump the database
 	docker compose exec -it django-app poetry run python manage.py dumpdata -o data.json
-	docker cp django-postgres-django-app-1:/app/data.json ./data.json
+	docker cp mentalhealthapp-django-app-1:/app/data.json ./data.json
 
 load:  ## Load the database
 	docker compose exec -it django-app poetry run python manage.py loaddata /app/data.json
