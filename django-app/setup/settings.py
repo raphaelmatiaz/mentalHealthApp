@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-9w-+ox3o8e(abt=eo(f35izcish$=gxg356-&bkw@5-1)frjkv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-POSTGRES_DB = config("POSTGRES_DB", cast=str, default="db")
-POSTGRES_HOST = config("POSTGRES_HOST", cast=str, default="localhost")
-POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str, default="password")
-POSTGRES_PORT = config("POSTGRES_PORT", cast=int, default=5432)
-POSTGRES_USER = config("POSTGRES_USER", cast=str, default="user")
+POSTGRES_DB = config("POSTGRES_DB", cast=str)
+POSTGRES_HOST = config("POSTGRES_HOST", cast=str)
+POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str)
+POSTGRES_PORT = config("POSTGRES_PORT", cast=int)
+POSTGRES_USER = config("POSTGRES_USER", cast=str)
 
 DATABASES = {
     "default": {
@@ -95,9 +95,8 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        # "HOST": "localhost",
-        "HOST": "database",
-        "PORT": 5432,
+        "HOST": POSTGRES_HOST,
+        "PORT": POSTGRES_PORT,
     }
 }
 

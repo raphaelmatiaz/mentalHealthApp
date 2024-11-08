@@ -20,24 +20,24 @@ class CategoryListView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class PhraseListView(APIView):
-    def get(self, request, category_id):
-        try:
-            category = Category.objects.get(id=category_id)
-            Phrase.objects.filter(category=category)
-            phrase = category.Phrase.first()
-            if phrase:
-                serializer = PhraseSerializer(phrase)
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            else:
-                return Response({"detail": "No phrases found for this category"}, status=status.HTTP_404_NOT_FOUND)
-        except Category.DoesNotExist:
-            return Response({"detail": "Category not found"}, status=status.HTTP_404_NOT_FOUND)
+# class PhraseListView(APIView):
+#     def get(self, request, category_id):
+#         try:
+#             category = Category.objects.get(id=category_id)
+#             Phrase.objects.filter(category=category)
+#         #     phrase = category.Phrase.first()
+        #     if phrase:
+        #         serializer = PhraseSerializer(phrase)
+        #         return Response(serializer.data, status=status.HTTP_200_OK)
+        #     else:
+        #         return Response({"detail": "No phrases found for this category"}, status=status.HTTP_404_NOT_FOUND)
+        # except Category.DoesNotExist:
+        #     return Response({"detail": "Category not found"}, status=status.HTTP_404_NOT_FOUND)
     
-# def phrase_list(request, category_id):
-#     category = Category.objects.get(id=category_id)
-#     phrases = Phrase.objects.filter(category=category)
-#     return render(request, 'dashboard/phrase_list.html', {'category': category, 'phrases': phrases})
+def phrase_list(request, category_id):
+    category = Category.objects.get(id=category_id)
+    phrases = Phrase.objects.filter(category=category)
+    return render(request, 'dashboard/phrase_list.html', {'category': category, 'phrases': phrases})
 
 
 from rest_framework import serializers
@@ -70,14 +70,14 @@ def category_list(request):
     # ]
     return render(request, 'dashboard/category_list.html', {'categories': categories})
 
-def phrase_list(request, category_id):
-    category = get_object_or_404(Category, id=category_id) 
-    phrases = Phrase.objects.filter(category=category)  
-
+# def phrase_list(request, category_id):
+#     category = get_object_or_404(Category, id=category_id) 
+#     phrases = Phrase.objects.filter(category=category)  
+# 
     context = {
-        'category': category,
-        'phrases': phrases
-    }
+#         'category': category,
+#         'phrases': phrases
+#     }
 
     return render(request, 'phrase_list.html', context)
     # return render(request, 'dashboard/phrase_list.html', {
@@ -131,12 +131,12 @@ def like_phrase(request, phrase_id):
     phrase.category = liked_category
     phrase.save()
 
-    return redirect('phrase_list', category_id=liked_category.id)
+    # return redirect('phrase_list', category_id=liked_category.id)
 
 def delete_phrase(request, phrase_id):
     phrase = get_object_or_404(Phrase, id=phrase_id)
 
     phrase.delete()
 
-    return redirect('phrase_list', category_id=phrase.category.id)
+    # return redirect('phrase_list', category_id=phrase.category.id)
 
