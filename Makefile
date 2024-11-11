@@ -15,7 +15,7 @@ up:  ## Run the project
 
 dump:  ## Dump the database
 	docker compose exec -it django-app poetry run python manage.py dumpdata -o data.json
-	docker cp django-postgres-django-app-1:/app/data.json ./data.json
+	docker cp mentalhealthapp-django-app-1:/app/data.json ./data.json
 
 load:  ## Load the database
 	docker compose exec -it django-app poetry run python manage.py loaddata /app/data.json
@@ -27,4 +27,8 @@ local: up-database  ## Runserver local
 	cd django-app && poetry run python manage.py runserver
 connect: ## Connect to the Postgres database
 	docker compose exec -it database psql --username=user --dbname=db
+
+sql: ## Run scripts/insert_users_and_orders.sql script
+	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_categories.sql
+	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_phrases.sql
 	

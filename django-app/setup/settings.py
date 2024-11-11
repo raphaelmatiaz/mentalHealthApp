@@ -10,9 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from email.policy import default
 from pathlib import Path
 from decouple import config
 import os
+# import mimetypes
+# mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +30,7 @@ SECRET_KEY = 'django-insecure-9w-+ox3o8e(abt=eo(f35izcish$=gxg356-&bkw@5-1)frjkv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', 
     'dashboard',
     'rest_framework', 
-    'rest_framework',
 ]
 
 
@@ -85,7 +87,7 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 POSTGRES_DB = config("POSTGRES_DB", cast=str, default="db")
 POSTGRES_HOST = config("POSTGRES_HOST", cast=str, default="localhost")
 POSTGRES_PASSWORD = config("POSTGRES_PASSWORD", cast=str, default="password")
-POSTGRES_PORT = config("POSTGRES_PORT", cast=int, default=5432)
+POSTGRES_PORT = config("POSTGRES_PORT", cast=int, default="5432")
 POSTGRES_USER = config("POSTGRES_USER", cast=str, default="user")
 
 DATABASES = {
@@ -94,9 +96,8 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": "localhost",
-        # "HOST": "database",
-        "PORT": 5432,
+        "HOST": POSTGRES_HOST,
+        "PORT": POSTGRES_PORT,
     }
 }
 
@@ -136,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_URL = '/media/'
+# STATIC_URL = '/media/'
 
 
 STATICFILES_DIRS = [

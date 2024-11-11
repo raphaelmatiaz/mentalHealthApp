@@ -1,28 +1,32 @@
-
 h2 {
-    font-size: 4rem;
-    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 3vw;
+    text-align: left;
     margin-bottom: 1rem;
 }
 
 h3 {
-    color: #FFF;
-    font-size: 2rem;
-    text-align: center;
+    color: rgb(219, 219, 219);
+    font-size: 1vw;
+    text-align: left;
 }
 
-h4 {
+/* h4 {
     color: rgb(219, 219, 219);
     font-size: 1.6rem;
     text-align: center;
     margin-bottom: 1.6rem;
-}
+} */
 
 label {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-left: 10px;
     font-weight: 700;
     margin-bottom: 4px;
+}
+input {
+    margin-bottom: 2rem;
 }
 
 fieldset {
@@ -31,20 +35,31 @@ fieldset {
     border-radius: 10px;
     border-top-left-radius: 5px;
     background-color: #f3f3f30a;
+    margin-top: 2rem;
 }
 
 legend {
     font-size: 1.2rem;
 }
 
-#id_category {
-    min-height: 4rem;
-    border-radius: 30px;
+img {
+    width: 34vw;
+}
+
+#id_category, #id_author {
+    height: 2vw;
+    border-radius: 10px;
+    border: none;
     padding: 0 20px;
     cursor: pointer;
 }
 
+#id_author {
+    cursor: text;
+}
+
 #id_content {
+    height: 4vw;
     min-width: 100%;
     resize: none;
     padding: 20px;
@@ -64,7 +79,7 @@ legend {
     font-weight: 700;
     padding: 15px 40px;
     border: none;
-    border-radius: 50px;
+    border-radius: 10px;
     width: 100%;
     text-align: center;
     box-shadow: 5px 5px 4px #151038a9;
@@ -78,22 +93,32 @@ legend {
     justify-content: space-between;
     align-items: center;
     /* border: 4px solid red; */
-    height: 80vh;
+    max-height: 70vh;
+    position: relative;
+    z-index: 10;
 }
 
 .content-block {
     /* border: 4px solid orange; */
     height: 100%;
-    max-width: 50%;
+    width: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: top;
 }
 
 .hero-img-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* border: 1px solid red; */
+    background-image: url('../media/well-being.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30vw;
+    width: 30vw;
 }
 
 .header-wrapper {
