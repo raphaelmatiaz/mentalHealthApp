@@ -32,3 +32,7 @@ sql: ## Run scripts/insert_users_and_orders.sql script
 	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_categories.sql
 	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_phrases.sql
 	
+clean: ## Stop and remove containers
+	docker compose down --volumes
+
+restart: clean up ## Restart the containers
