@@ -6,37 +6,23 @@ h2, h3 {
 h2 {
     margin-bottom: 1rem;
     margin-top: 1rem;
-    font-size: 3vw;
 }
 
 h3 {
     color: rgb(219, 219, 219);
-    font-size: 1.5vw;
 }
 
-#content-wrapper {
-    /* background-color: red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-    z-index: 10;
-}
-
-#headings-wrapper {
-    /* background-color: aqua; */
-    width: 100%;
-}
 
 #category-list {
     width: 100%;
-    height: fit-content;
-    /* background-color: rgba(0, 255, 166, 0.625); */
+    height: 20vw;
+    /* background-color: rgba(173, 47, 47, 0.285); */
     inset: 0;
     top: 35vh;
     z-index: 5;
     margin-top: 8rem;
+
+   
 }
 
 #category-list > ul {
@@ -56,10 +42,11 @@ h3 {
     font-size: 1.2vw;
     background-color: #FFF;
     min-width: 12vw;
+    min-height: 20%;
     color: black;
     font-weight: 700;
     border-radius: 10px;
-    padding: 20px 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,10 +54,6 @@ h3 {
     font-family: sans-serif;
     box-shadow: 5px 5px 4px #151038a9;
     transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-}
-
-.category > a {
-    color: black;
 }
 
 .category:hover {

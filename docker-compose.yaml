@@ -19,10 +19,7 @@ services:
       dockerfile: ../ops/django-app.Dockerfile
     ports:
       - 8000:8000
-    volumes:
-      - ./django-app:/app/
-
-    command: bash -c "poetry run python manage.py migrate && poetry run gunicorn -w 20 --reload -b 0.0.0.0:8000 setup.wsgi"
+    command: bash -c "poetry run python manage.py migrate && poetry run gunicorn -w 20 -b 0.0.0.0:8000 setup.wsgi"
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user

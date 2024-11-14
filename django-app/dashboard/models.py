@@ -1,10 +1,11 @@
 from django.db import models
 
-class Category( models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=255)
 
     @classmethod
     def get_or_create_liked_category(cls):
+        # Tenta encontrar ou criar a categoria "Frases Curtidas"
         category, created = cls.objects.get_or_create(name="Frases Curtidas")
         return category
 
@@ -13,7 +14,7 @@ class Category( models.Model):
 
 class Phrase(models.Model):
     content = models.TextField()
-    author = models.CharField(max_length=255, null=False, default="Autor Desconhecido")
+    author = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
