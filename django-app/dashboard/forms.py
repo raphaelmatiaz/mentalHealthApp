@@ -1,5 +1,6 @@
 from django import forms
 from .models import Phrase, Category
+from mongo.models import PhraseComments
 
 class PhraseForm(forms.ModelForm):
 
@@ -8,3 +9,9 @@ class PhraseForm(forms.ModelForm):
     class Meta:
         model = Phrase
         fields = ['author', 'content', 'category']
+        
+class CommentForm(forms.ModelForm):
+    
+    class Meta:
+        model = PhraseComments
+        fields = ['author', 'content']
