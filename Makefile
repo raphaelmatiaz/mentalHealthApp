@@ -25,12 +25,16 @@ up-database:  ## Docker compose up database only
 
 local: up-database  ## Runserver local
 	cd django-app && poetry run python manage.py runserver
+	
 connect: ## Connect to the Postgres database
 	docker compose exec -it database psql --username=user --dbname=db
 
 sql: ## Run scripts/insert_users_and_orders.sql script
 	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_categories.sql
 	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_phrases.sql
+	
+nosql: ## Run initdb.d/
+	docker compose exec -it mongo mongosh --username root --password example --host localhost:27017 --authenticationDatabase admin db
 	
 clean: ## Stop and remove containers
 	docker compose down --volumes
