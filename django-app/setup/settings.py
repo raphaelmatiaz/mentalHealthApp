@@ -101,6 +101,13 @@ DATABASES = {
     }
 }
 
+# MongoDB
+MONGO_DB = config("MONGO_DB", cast=str, default="db")
+MONGO_HOST = config("MONGO_HOST", cast=str, default="localhost")
+MONGO_PORT = config("MONGO_PORT", cast=int, default=27017)
+MONGO_USERNAME = config("MONGO_USERNAME", cast=str, default="root")
+MONGO_PASSWORD = config("MONGO_PASSWORD", cast=str, default="example")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

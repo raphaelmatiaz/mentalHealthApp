@@ -17,7 +17,6 @@ def category_list(request):
 
     return render(request, 'dashboard/category_list.html', {'categories': categories})
 
-@csrf_exempt
 def create_phrase(request):
 
     if request.method == 'POST':
@@ -25,7 +24,6 @@ def create_phrase(request):
 
         if form.is_valid():
             phrase = form.save(commit=False)
-            # phrase.category = category  
             phrase.save()
 
             form = PhraseForm()
@@ -36,13 +34,6 @@ def create_phrase(request):
 
     return render(request, 'dashboard/create_phrase.html', {'form': form})
 
-def like_phrase(request, phrase_id):
-    phrase = get_object_or_404(Phrase, id=phrase_id)
-
-    liked_category, created = Category.objects.get_or_create(name="Frases Curtidas")
-
-    phrase.category = liked_category
-    phrase.save()
 
 def delete_phrase(request, phrase_id):
     phrase = get_object_or_404(Phrase, id=phrase_id)

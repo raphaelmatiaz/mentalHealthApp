@@ -5,6 +5,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('dashboard.urls')),  
+    path('', include('dashboard.urls')), 
+    path("comments/", include("comments.urls"), name="comments"),
+ 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

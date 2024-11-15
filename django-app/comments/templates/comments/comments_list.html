@@ -1,0 +1,12 @@
+{% extends 'blueprint_A.html' %}
+
+{% block content %}
+    <h1>Lista de Comentários</h1>
+    <ul>
+        {% for comment in comments %}
+            <li><strong>{{ comment.author }}</strong>: {{ comment.content }} (Categoria {{ comment.category_id }})</li>
+        {% empty %}
+            <li><em>Não há comentários ainda.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
