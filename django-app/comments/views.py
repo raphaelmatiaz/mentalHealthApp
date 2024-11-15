@@ -4,6 +4,7 @@ from mongo.models import Comments
 from mongo.mongo import Mongo
 from rest_framework.request import Request
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
+from .forms import CommentForm  
 
 mongo = Mongo()
 logging.basicConfig(level=10)
@@ -21,6 +22,8 @@ def get_comments(request: Request, category_id: int):
 
     return JsonResponse(data={"comments": serializer.model_dump()}, status=HTTP_200_OK)
 
+#Tentativa de fazer método POST
+
 def post_comments(request):
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -29,12 +32,6 @@ def post_comments(request):
             content = form.cleaned_data['content']
             author = form.cleaned_data['author']
             category = form.cleaned_data['category']
-
-            comment_data = {
-                "content": content,
-                "author": author,
-                "category": category
-            }
 
             mongo.collection.insert_one(comment_data)
 
