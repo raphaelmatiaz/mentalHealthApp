@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, RootModel, field_validator
+from pydantic import BaseModel, Field, RootModel
 
 class Comment(BaseModel):
     id: str = Field(alias="_id")
@@ -7,5 +7,5 @@ class Comment(BaseModel):
     category_id: int
 
 
-class Comments(RootModel):
+class CategoryComments(RootModel):
     root: list[Comment]
