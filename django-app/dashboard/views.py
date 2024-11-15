@@ -11,6 +11,7 @@ import json
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 from rest_framework.request import Request
 
+mongo = Mongo()
 
 #Postgres
 def home(request):
@@ -19,7 +20,11 @@ def home(request):
 def phrase_list(request, category_id):
     category = Category.objects.get(id=category_id)
     phrases = Phrase.objects.filter(category=category)
-    return render(request, 'dashboard/phrase_list.html', {'category': category, 'phrases': phrases})
+    comments = mongo.db_get_comment(category_id)
+    
+    form = CommentForm(request.POST)
+    
+    return render(request, 'dashboard/phrase_list.html', {'category': category, 'phrases': phrases, 'form': form})
 
 def category_list(request):
     categories = Category.objects.all()
@@ -50,7 +55,6 @@ def delete_phrase(request, phrase_id):
     phrase.delete()
 
 # MongoDB
-mongo = Mongo()
 
 
 def view_get_phrase_comments(request: Request, category_id):
@@ -70,9 +74,17 @@ def view_get_phrase_comments(request: Request, category_id):
 
 
 def view_post_comment(request: Request, category_id):      
+    import logging
+    
+    logging.basicConfig(level=logging.INFO)
+    category = Category.objects.get(id=category_id)
+    phrases = Phrase.objects.filter(category=category)
+    comments = mongo.db_get_comment(category_id)
     
     if request.method == 'POST':
         form = CommentForm(request.POST)
+
+        logging.warning("HERE")
 
         if form.is_valid():
 
@@ -85,22 +97,25 @@ def view_post_comment(request: Request, category_id):
                 content=content
             )
             
-            if successfull:
-                return JsonResponse(
-                    data={"message": "Comment added successfully"},
-                    status=HTTP_200_OK
-                )
-            else:
-                return JsonResponse(
-                    data={"error": "Failed to add comment"},
-                    status=HTTP_500_INTERNAL_SERVER_ERROR
-                )
+            # if successfull:
+            #     return JsonResponse(
+            #         data={"message": "Comment added successfully"},
+            #         status=HTTP_200_OK
+            #     )
+            # else:
+            #     return JsonResponse(
+            #         data={"error": "Failed to add comment"},
+            #         status=HTTP_500_INTERNAL_SERVER_ERROR
+            #     )
             
             form = CommentForm()
 
-            return render(request, 'dashboard/create_phrase.html', {'form': form})    
+            return render(request, 'dashboard/phrase_list.html', {'form': form, "category": category })    
     else:
-        form = CommentForm()
+        form = CommentForm(request.POST)
+        
+        return render(request, 'dashboard/phrase_list.html', {'category': category, 'phrases': phrases, 'form': form})
+
     
-    return render(request, 'dashboard/create_phrase.html', {'form': form})    
+    return render(request, 'dashboard/phrase_list.html', {'form': form})    
 

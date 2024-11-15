@@ -55,4 +55,4 @@ def view_post_comment(request: Request, category_id):
     else:
         form = CommentForm()
     
-    return render(request, 'dashboard/create_phrase.html', {'form': form})    
+    return render(request, 'dashboard/phrase_list.html', {'form': form})    

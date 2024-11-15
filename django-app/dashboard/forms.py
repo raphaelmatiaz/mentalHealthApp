@@ -14,5 +14,4 @@ class PhraseForm(forms.ModelForm):
 class CommentForm(forms.Form):
     content = forms.CharField(label='Comment', widget=forms.Textarea)
     author = forms.CharField(label='Author', max_length=100)
-    category = forms.CharField(label='Category', max_length=100)
 

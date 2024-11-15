@@ -11,7 +11,7 @@ bash:  ## Run bash in the django-app container
 	docker compose exec -it django-app bash
 
 up:  ## Run the project
-	docker compose up --build
+	docker compose up
 
 dump:  ## Dump the database
 	docker compose exec -it django-app poetry run python manage.py dumpdata -o data.json

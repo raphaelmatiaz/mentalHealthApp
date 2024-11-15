@@ -51,54 +51,15 @@
             <h2>Comments about <br> {{ category.name }} </h2>
 
             <!-- o for loop vai começar aqui -->
+            {% for comment in comments %}
             <div class="comment-instance">
                 <span class="comment-user-info-wrapper flex-row center-start" >
                     <div class="comment-user-profile-image"></div>
-                    <p class="comment-username">Username</p>
+                    <p class="comment-username">{{ comment.author }}</p>
                 </span>
-                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ea, fugiat nemo iure iste distinctio doloremque voluptas! Nulla, dolores consequuntur.adipisci temporibus dignissimos assumenda obcaecati, corrupti ducimus nostrum commodi magni.</p>
+                <p class="comment-text">{{ comment.content }}</p>
             </div>
-
-            <div class="comment-instance">
-                <span class="comment-user-info-wrapper flex-row center-start" >
-                    <div class="comment-user-profile-image"></div>
-                    <p class="comment-username">Username</p>
-                </span>
-                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ea, fugiat nemo iure iste distinctio doloremque voluptas! Nulla, dolores consequuntur.adipisci temporibus dignissimos assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum voluptatem, amet totam inventore minima molestiae, optio corrupti veniam, provident esse odit fugiat suscipit illum doloribus! Reiciendis repellendus non repellat obcaecati natus reprehenderit eius, quas saepe! Quam reiciendis sed facere perferendis. Commodi ea iusto eligendi hic rem, dignissimos delectus porro nisi consectetur sed error voluptatem in ab ratione aperiam sapiente fugiat quod fugit autem sit sint consequatur! Labore necessitatibus ratione esse aperiam blanditiis unde doloremque dignissimos molestiae. Ducimus dolores corporis cumque tempore soluta! Necessitatibus, eligendi facere? Consequuntur aliquam temporibus dolores voluptates, maiores doloribus voluptas. Sint repellat ipsam error natus sapiente voluptas impedit vel quasi ab eos! Blanditiis, id incidunt? Minus, rerum magni dolor earum qui quidem. Odit, officiis error ipsam placeat odio sed doloribus iure, reiciendis est recusandae molestiae sint tempora explicabo aliquam molestias soluta! Natus ipsam commodi culpa molestiae, nisi molestias, inventore ut excepturi iusto nemo, blanditiis quam a aliquam? obcaecati, corrupti ducimus nostrum commodi magni.</p>
-            </div>
-        
-            <div class="comment-instance">
-                <span class="comment-user-info-wrapper flex-row center-start" >
-                    <div class="comment-user-profile-image"></div>
-                    <p class="comment-username">Username</p>
-                </span>
-                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint adipisci temporibus dignissimos assumenda obcaecati, corrupti ducimus nostrum commodi magni.</p>
-            </div>
-        
-            <div class="comment-instance">
-                <span class="comment-user-info-wrapper flex-row center-start" >
-                    <div class="comment-user-profile-image"></div>
-                    <p class="comment-username">Username</p>
-                </span>
-                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint adipisci temporibus dignissimos assumenda obcaecati, corrupti ducimus nostrum commodi magni.</p>
-            </div>
-        
-            <div class="comment-instance">
-                <span class="comment-user-info-wrapper flex-row center-start" >
-                    <div class="comment-user-profile-image"></div>
-                    <p class="comment-username">Username</p>
-                </span>
-                <p class="comment-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, sint..</p>
-            </div>
-        
-            <div class="comment-instance">
-                <span class="comment-user-info-wrapper flex-row center-start" >
-                    <div class="comment-user-profile-image"></div>
-                    <p class="comment-username">Username</p>
-                </span>
-                <p class="comment-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis totam, impedit quae iusto tempore necessitatibus ad non consequuntur quod odio quia ut quos distinctio molestias. Enim sunt placeat laborum temporibus expedita nisi, eius veritatis quod laudantium. Dolorem veritatis atque repellendus exercitationem voluptatem porro soluta incidunt..</p>
-            </div>
-
+            {% endfor %}
             <!-- fim do for loop -->
 
         </div>
@@ -107,10 +68,19 @@
 
             <!-- a form vai ser inserida aqui -->
 
-            <form class="comment-input-form-wrapper flex-row center-space-between">
+            <form method="POST" id="register-phrase-form" action="{% url 'add_comment' category.id %}">
+                
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+
+                <button type="submit" id="submit-button">Submit</button>
+            </form>
+            
+            <!-- <form class="comment-input-form-wrapper flex-row center-space-between">
                 <input class="comment-input" type="text" name="" id="" placeholder="Write a comment here">
                 <input class="comment-submit" type="submit" value="Submit">
-            </form>
+            </form> -->
 
             <!-- fim da form -->
              
