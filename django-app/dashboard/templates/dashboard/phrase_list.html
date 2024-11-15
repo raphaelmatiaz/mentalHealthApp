@@ -15,49 +15,112 @@
 
 {% block content %}
 <hr>
-<div class="content">
+<div class="content flex-row">
 
-    <span class="content-block">
+    <div class="flex-column center-space-between content-left" >
 
-        <span class="header-wrapper">
-            <h2>Phrases to help with {{ category.name }}</h2>
-            <h3>Reading and integrating these phrases might help you deal with {{ category.name }}</h3>
-            <hr>
+        <div class="header-wrapper">
+            <h2>Phrases to help with <br> <strong>{{ category.name }}</strong></h2>
+            <!-- <h3>Reading and integrating these phrases might help you deal with {{ category.name }}</h3> -->
+        </div>
+
+        <div class="scroll-container-wrapper">
+            <div class="scroll-container">
+                {% for phrase in phrases %}
+                    <div class="scroll-area">
+                        <span>
+                            <div class="phrase-image"></div>
+                            <p class="phrase"> {{ phrase.content }}</p>
+                            <hr>
+                            <p class="author"> {{ phrase.author }}</p>
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="vertical-separator"></div>
+
+    <span class="flex-column center-space-between">
+
+        <div class="comments-container flex-column center-space-between">
+
+            <h2>Comments about <br> {{ category.name }} </h2>
+
+            <!-- o for loop vai começar aqui -->
+            <div class="comment-instance">
+                <span class="comment-user-info-wrapper flex-row center-start" >
+                    <div class="comment-user-profile-image"></div>
+                    <p class="comment-username">Username</p>
+                </span>
+                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ea, fugiat nemo iure iste distinctio doloremque voluptas! Nulla, dolores consequuntur.adipisci temporibus dignissimos assumenda obcaecati, corrupti ducimus nostrum commodi magni.</p>
+            </div>
+
+            <div class="comment-instance">
+                <span class="comment-user-info-wrapper flex-row center-start" >
+                    <div class="comment-user-profile-image"></div>
+                    <p class="comment-username">Username</p>
+                </span>
+                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ea, fugiat nemo iure iste distinctio doloremque voluptas! Nulla, dolores consequuntur.adipisci temporibus dignissimos assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum voluptatem, amet totam inventore minima molestiae, optio corrupti veniam, provident esse odit fugiat suscipit illum doloribus! Reiciendis repellendus non repellat obcaecati natus reprehenderit eius, quas saepe! Quam reiciendis sed facere perferendis. Commodi ea iusto eligendi hic rem, dignissimos delectus porro nisi consectetur sed error voluptatem in ab ratione aperiam sapiente fugiat quod fugit autem sit sint consequatur! Labore necessitatibus ratione esse aperiam blanditiis unde doloremque dignissimos molestiae. Ducimus dolores corporis cumque tempore soluta! Necessitatibus, eligendi facere? Consequuntur aliquam temporibus dolores voluptates, maiores doloribus voluptas. Sint repellat ipsam error natus sapiente voluptas impedit vel quasi ab eos! Blanditiis, id incidunt? Minus, rerum magni dolor earum qui quidem. Odit, officiis error ipsam placeat odio sed doloribus iure, reiciendis est recusandae molestiae sint tempora explicabo aliquam molestias soluta! Natus ipsam commodi culpa molestiae, nisi molestias, inventore ut excepturi iusto nemo, blanditiis quam a aliquam? obcaecati, corrupti ducimus nostrum commodi magni.</p>
+            </div>
+        
+            <div class="comment-instance">
+                <span class="comment-user-info-wrapper flex-row center-start" >
+                    <div class="comment-user-profile-image"></div>
+                    <p class="comment-username">Username</p>
+                </span>
+                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint adipisci temporibus dignissimos assumenda obcaecati, corrupti ducimus nostrum commodi magni.</p>
+            </div>
+        
+            <div class="comment-instance">
+                <span class="comment-user-info-wrapper flex-row center-start" >
+                    <div class="comment-user-profile-image"></div>
+                    <p class="comment-username">Username</p>
+                </span>
+                <p class="comment-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci eum praesentium debitis. Neque voluptas, natus ut suscipit accusantium quod sint adipisci temporibus dignissimos assumenda obcaecati, corrupti ducimus nostrum commodi magni.</p>
+            </div>
+        
+            <div class="comment-instance">
+                <span class="comment-user-info-wrapper flex-row center-start" >
+                    <div class="comment-user-profile-image"></div>
+                    <p class="comment-username">Username</p>
+                </span>
+                <p class="comment-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, sint..</p>
+            </div>
+        
+            <div class="comment-instance">
+                <span class="comment-user-info-wrapper flex-row center-start" >
+                    <div class="comment-user-profile-image"></div>
+                    <p class="comment-username">Username</p>
+                </span>
+                <p class="comment-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis totam, impedit quae iusto tempore necessitatibus ad non consequuntur quod odio quia ut quos distinctio molestias. Enim sunt placeat laborum temporibus expedita nisi, eius veritatis quod laudantium. Dolorem veritatis atque repellendus exercitationem voluptatem porro soluta incidunt..</p>
+            </div>
+
+            <!-- fim do for loop -->
+
+        </div>
+
+        <span class="form-wrapper">
+
+            <!-- a form vai ser inserida aqui -->
+
+            <form class="comment-input-form-wrapper flex-row center-space-between">
+                <input class="comment-input" type="text" name="" id="" placeholder="Write a comment here">
+                <input class="comment-submit" type="submit" value="Submit">
+            </form>
+
+            <!-- fim da form -->
+             
         </span>
-
-        <section class="scroll-container">
-            {% for phrase in phrases %}
-            
-            
-            <div class="scroll-area">
-                <span>
-                    <p class="phrase"> {{ phrase.content }}</p>
-                    <hr>
-                    <p class="author"> {{ phrase.author }}</p>
-                </span>
-            </div>
-
-            {% endfor %}
-            <!-- <div class="scroll-area">
-                <span>
-                    <p class="phrase"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt est, quisquam molestias nisi unde corrupti.</p>
-                    <hr>
-                    <p class="author"> Author Name</p>
-                </span>
-            </div>
-            <div class="scroll-area">
-                <span>
-                    <p class="phrase"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, ipsa.</p>
-                    <hr>
-                    <p class="author"> Author Name</p>
-                </span>
-            </div> -->
-
-        </section>
 
     </span>
 
-    <span class="hero-img-wrapper"></span>
+    
+
+    <!-- <span class="hero-img-wrapper"></span> -->
+
     
 </div>
 

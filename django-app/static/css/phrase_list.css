@@ -2,28 +2,93 @@
 h2 {
     margin-bottom: 1rem;
     margin-top: 1rem;
-    font-size: 2.4vw;
+    font-size: 2vw;
     text-align: center;
     margin-bottom: 1rem;
 }
 
+h2 > strong {
+text-transform: capitalize;
+/* text-decoration: underline #FFF; */
+}
+
+h2 > strong::before {
+    content: "\261B";
+    margin-right: 1rem;
+}
+h2 > strong::after {
+    content: "\261A";
+    margin-left: 1rem;
+}
+
 h3 {
     color: rgb(219, 219, 219);
-    font-size: 1vw;
+    font-size: 1rem;
     text-align: left;
+    text-align: center;
+
 }
+
+.vertical-separator {
+    height: 100%;
+    width: 1px;
+    background-color: #FFF;
+    margin: 0 10px 0 20px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.center-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.center-start {
+    align-items: center;
+    justify-content: start;
+}
+
+.center-space-between {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.center-space-around {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.center-space-evenly {
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
 
 .header-wrapper {
     /* border: 4px solid rgb(0, 255, 13); */
-    padding: 0 20px;
+    padding: 0 2vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    position: absolute;
+    /* position: absolute; */
     top: 0;
-    right: 4%;
-    max-width: inherit;
+    left: 0;
+    width: 100%;
+    border: 1px solid #FFF;
+    padding: 4px 16px;
+    border-radius: 10px;
+    /* color: #FFF; */
+    /* background: linear-gradient(to right, #514a9d, #24c7dc);  */
+
 }
 
 #phrase-block-list {
@@ -35,11 +100,20 @@ h3 {
 .phrase-block {
     min-height: 10vw;
     width: 100%;
-    border: 4px solid purple;
+    /* border: 4px solid purple; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.phrase-image {
+    background-image: url('../media/peace.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 10rem;
+    width: 10rem;
 }
 
 .hero-img-wrapper {
@@ -57,14 +131,27 @@ h3 {
 
 .content {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
     align-items: top;
-    /* border: 4px solid red; */
-    height: 65vh;
+    border: 1px solid #FFF;
+    border-radius: 10px;
+    padding: 20px;
+    /* border: 4px solid rgb(0, 255, 132); */
+    height: 75vh;
+    width: 100%;
     position: relative;
     z-index: 10;
     margin-top: 4rem;
+    /* background-color: #ffffff; */
+}
+
+.content-left {
+    /* border: 4px solid hotpink; */
+    width: 100%;
+    position: relative;
+    min-width: 45%;
+    gap: 4px;
 }
 
 .content-block {
@@ -104,21 +191,35 @@ h3 {
 
 
 .scroll-container, .scroll-area {
-    min-height: 100%;
-    height: 100%;
+    min-height: 100%; /*100%*/
+    height: 100%; /*100%*/
     width: 100%;
     font-size: 3vw;
+    border-radius: 10px;
+
 }
 
 .scroll-container {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
+    position: relative;
+    border: 1px solid #FFF;
+    /* background: -webkit-linear-gradient(to right, #514a9d, #24c7dc);  /* Chrome 10-25, Safari 5.1-6 */
+    /* background: linear-gradient(to right, #514a9d, #24c7dc);  */
+    background: linear-gradient(to right, #514a9d52, #24c7dc5c); 
+    /* background-color: #514a9d; */
+    /* border: 4px solid red; */
+}
+
+.scroll-container-wrapper {
+    height: 80%;
 }
 
 .scroll-area {
     scroll-snap-align: start;
     scroll-behavior: smooth;
     /* border: 3px solid pink; */
+    height: 100%;
 
 }
 
@@ -132,7 +233,7 @@ h3 {
     align-items: center;
     /* border: 3px solid green; */
 
-    text-align: justify;
+    text-align: center;
     padding: 0 10%;
 }
 
@@ -142,10 +243,99 @@ h3 {
 }
 
 
+.comments-container {
+    max-height: 90%;
+    height: 100%;
+    width: 100%;
+    font-size: 1vw;
+
+    /* border: 1px solid red; */
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    padding: 0 10px 10px 10px;
+}
+
+.comment-instance {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.429);
+    padding: 24px 16px;
+    border-radius: 10px;
+    min-width: 100%;
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0);
+    height: fit-content;
+    
+}
+
+.comment-user-info-wrapper {
+    margin-bottom: 1rem;
+}
+
+.comment-user-profile-image {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.826);
+    background-image: url(../media/user-c.png);
+    background-size: contain;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-position: 0 0px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.comment-username {
+    color: #514a9d;
+    font-weight: bold;
+}
+
+.comment-input-form-wrapper {
+    min-height: fit-content;
+    background-color: #FFF;
+    max-width: 100%;
+    /* border: 4px solid salmon; */
+    padding: 10px 20px;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    box-shadow: 0 -30px 30px rgba(0, 0, 0, 0.337);
+}
+
+.form-wrapper {
+    width: 100%;
+    padding: 0 20px 0 10px;
+    text-align: center;
+
+}
+
+.comment-input {
+    min-width: 80%;
+    padding: 10px 10px 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #e2e2e2;
+    border: 1px solid #999;
+}
+
+.comment-submit {
+    min-width: 15%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #514a9d;
+    color: #FFF;
+}
+
+.comment-submit:hover {
+    cursor: pointer;
+}
 /*Scrollbar Stuff*/
 
 
-
+#white-footer {
+    display: none;
+}
 /* Style the scrollbar */
 ::-webkit-scrollbar {
     width: 12px; /* Set the width of the scrollbar */
@@ -160,11 +350,16 @@ h3 {
 
 /* Style the thumb (scroll handle) */
 ::-webkit-scrollbar-thumb {
-    background: #b5c9b9;
+    background: #afafaf;
     border-radius: 10px; /* Rounded corners for the thumb */
 }
 
 /* Optional: Hover effect for the thumb */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background:  #787878;
+}
+
+.scroll-container > ::-webkit-scrollbar-track {
+    background: #6f0101;
+    border-radius: 10px; /* Rounded corners for the track */
 }
