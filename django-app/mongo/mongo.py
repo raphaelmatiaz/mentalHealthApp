@@ -2,11 +2,6 @@ from urllib.parse import quote_plus
 from django.conf import settings
 from mongo.models import Comment
 from pymongo import MongoClient
-<<<<<<< HEAD
-=======
-from datetime import datetime
->>>>>>> 1eb884ecd59cb322da732a9059630959933c0d33
-
 
 class Mongo:
     def __init__(
@@ -24,24 +19,14 @@ class Mongo:
             host,
             port,
         )
-<<<<<<< HEAD
 
-def get_comments(self, category_id: int) -> list[Comment]:
-        with MongoClient(self.uri) as client:
-            db = client.get_database(self.default_database)
-            collection = db.get_collection("comments")
-            comments = collection.find({"category_id": category_id})
-
-            return [Comment(**comment) for comment in comments]
-=======
-     
-    def db_add_comment(self, phrase_id: int, user_name: str, content: str) -> bool:
+    def db_add_comment(self, category_id: int, author: str, content: str) -> bool:
         with MongoClient(self.uri) as client:
             db = client.get_database(self.default_database)
             collection = db.get_collection("Comments")
             
             comment = {
-                "phrase": phrase_id,
+                "category_id": category_id,
                 "author": author,
                 "content": content,
             }
@@ -49,13 +34,12 @@ def get_comments(self, category_id: int) -> list[Comment]:
             result = collection.insert_one(comment)
             return bool(result.inserted_id)
         
-    def db_get_comment(self, phrase_id: int) -> list[Comment]:
+    def db_get_comment(self, category_id: int) -> list[Comment]:
         with MongoClient(self.uri) as client:
             db = client.get_database(self.default_database)
             collection = db.get_collection("Comments")
-            comments = collection.find({"phrase_id": phrase_id})
+            comments = collection.find({"category_id": category_id})
 
             return [Comment(**comment) for comment in comments]
             
     
->>>>>>> 1eb884ecd59cb322da732a9059630959933c0d33
