@@ -8,19 +8,15 @@ db.createCollection("phrases", {
          properties: {
             author: {
                bsonType: "string",
-               description: "must be a string and is required"
             },
             content: {
                bsonType: "string",
-               description: "must be a string and is required"
             },
             created_at: {
                bsonType: "string",
-               description: "must be a date and is required"
             },
             category_id: {
                bsonType: "int",
-               description: "must be an integer and is required"
             }
          }
       }

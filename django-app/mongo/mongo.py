@@ -35,13 +35,13 @@ def get_comments(self, category_id: int) -> list[Comment]:
             return [Comment(**comment) for comment in comments]
 =======
      
-    def db_add_comment(self, phrase_id: int, user_name: str, content: str) -> bool:
+    def db_add_comment(self, category_id: int, author: str, content: str) -> bool:
         with MongoClient(self.uri) as client:
             db = client.get_database(self.default_database)
             collection = db.get_collection("Comments")
             
             comment = {
-                "phrase": phrase_id,
+                "category_id": category_id,
                 "author": author,
                 "content": content,
             }
@@ -49,11 +49,11 @@ def get_comments(self, category_id: int) -> list[Comment]:
             result = collection.insert_one(comment)
             return bool(result.inserted_id)
         
-    def db_get_comment(self, phrase_id: int) -> list[Comment]:
+    def db_get_comment(self, category_id: int) -> list[Comment]:
         with MongoClient(self.uri) as client:
             db = client.get_database(self.default_database)
             collection = db.get_collection("Comments")
-            comments = collection.find({"phrase_id": phrase_id})
+            comments = collection.find({"category_id": category_id})
 
             return [Comment(**comment) for comment in comments]
             

@@ -4,7 +4,7 @@ from .forms import CommentForm, PhraseForm
 from django.http import Http404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from mongo.models import Comment, PhraseComments
+from mongo.models import CategoryComments, Comment
 from mongo.mongo import Mongo
 from django.views.decorators.http import require_http_methods
 import json
@@ -53,27 +53,50 @@ def delete_phrase(request, phrase_id):
 mongo = Mongo()
 
 
-def view_get_phrase_comments(request: Request, phrase_id):
-    comments=mongo.db_get_comment(phrase_id)
+def view_get_phrase_comments(request: Request, category_id):
+    comments=mongo.db_get_comment(category_id)
         
     if not comments:
         return JsonResponse(
-            data={"error": "Commments not found"}, status=HTTP_404_NOT_FOUND
+            data={"error": "Commments not found"}, 
+            status=HTTP_404_NOT_FOUND
         )
     
-    serializer = PhraseComments(root=comments)
-    return JsonResponse(data={"comments": serializer.model_dump()}, status=HTTP_200_OK)
+    serializer = CategoryComments(root=comments)
+    return JsonResponse(
+        data={"comments": serializer.model_dump()}, 
+        status=HTTP_200_OK
+    )
 
 
-def view_post_comment(request: Request, phrase_id):      
+def view_post_comment(request: Request, category_id):      
     
     if request.method == 'POST':
         form = CommentForm(request.POST)
 
         if form.is_valid():
-            form.save()
 
-            form = PhraseForm()
+            author = form.cleaned_data['author']
+            content = form.cleaned_data['content']
+            
+            successfull = mongo.db_add_comment(
+                author=author,
+                category_id=category_id,
+                content=content
+            )
+            
+            if successfull:
+                return JsonResponse(
+                    data={"message": "Comment added successfully"},
+                    status=HTTP_200_OK
+                )
+            else:
+                return JsonResponse(
+                    data={"error": "Failed to add comment"},
+                    status=HTTP_500_INTERNAL_SERVER_ERROR
+                )
+            
+            form = CommentForm()
 
             return render(request, 'dashboard/create_phrase.html', {'form': form})    
     else:
