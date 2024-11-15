@@ -34,6 +34,9 @@ sql: ## Run scripts/insert_users_and_orders.sql script
 	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_categories.sql
 	docker compose exec database psql --username=user --dbname=db -f /docker-entrypoint-initdb.d/insert_into_phrases.sql
 	
+nosql: ## Run initdb.d/
+	docker compose exec -it mongo mongosh --username root --password example --host localhost:27017 --authenticationDatabase admin db
+	
 clean: ## Stop and remove containers
 	docker compose down --volumes
 

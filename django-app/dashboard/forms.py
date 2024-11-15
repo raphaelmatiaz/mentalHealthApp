@@ -1,5 +1,6 @@
 from django import forms
 from .models import Phrase, Category
+from mongo.models import PhraseComments
 
 class PhraseForm(forms.ModelForm):
 
